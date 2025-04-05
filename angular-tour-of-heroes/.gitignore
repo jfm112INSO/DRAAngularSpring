@@ -1,0 +1,5 @@
+# Node.js / Angular
+node_modules/
+dist/
+.angular/
+.env

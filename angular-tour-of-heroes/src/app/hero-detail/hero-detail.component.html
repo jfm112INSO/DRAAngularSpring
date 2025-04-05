@@ -1,0 +1,25 @@
+<button type="button" (click)="goBack()">go back</button>
+
+@if (hero) {
+  <h2>{{ hero.name | uppercase }} Details</h2>
+  <div>id: {{ hero.id }}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
+  </div>
+
+  <h3>Superpowers</h3>
+  <ul>
+    @for (power of hero.powers; track power) {
+      <li>
+        <input [(ngModel)]="hero.powers[hero.powers.indexOf(power)]" placeholder="Edit power">
+        <button type="button" (click)="removePower(hero.powers.indexOf(power))">Delete</button>
+      </li>
+    }    
+  </ul>
+
+  <div>
+    <input [(ngModel)]="newPower" placeholder="Add new power">
+    <button type="button" (click)="addPower()">Add Power</button>
+  </div>
+}
