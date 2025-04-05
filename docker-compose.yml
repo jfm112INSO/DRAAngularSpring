@@ -1,0 +1,43 @@
+services:
+  backend:
+    build:
+      context: ./demo
+      dockerfile: Dockerfile
+    container_name: spring_backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/db
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: pass
+
+  frontend:
+    build:
+      context: ./angular-tour-of-heroes
+      dockerfile: Dockerfile
+    container_name: angular_frontend
+    ports:
+      - "4200:4200"
+    volumes:
+    - ./angular-tour-of-heroes:/app
+    - /app/node_modules
+    depends_on:
+      - backend
+
+  db:
+    image: postgres
+    container_name: postgres_heroes
+    restart: always
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
