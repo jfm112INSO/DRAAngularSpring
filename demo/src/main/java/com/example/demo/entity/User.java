@@ -3,7 +3,6 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
-
 @Entity
 @Table(name = "users")
 public class User {
@@ -15,6 +14,9 @@ public class User {
     @NotBlank(message = "Name is mandatory")
     private String name;
 
+    @NotBlank(message = "Surname is mandatory")
+    private String surname;
+
     @NotBlank(message = "Email is mandatory")
     @Email
     private String email;
@@ -22,8 +24,9 @@ public class User {
     public User() {
     }
 
-    public User(String name, String email) {
+    public User(String name, String surname, String email) {
         this.name = name;
+        this.surname = surname;
         this.email = email;
     }
 
@@ -43,6 +46,14 @@ public class User {
         this.name = name;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -53,7 +64,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", email=" + email + "]";
+        return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + "]";
     }
-
 }

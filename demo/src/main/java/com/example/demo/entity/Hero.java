@@ -13,7 +13,7 @@ public class Hero {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "hero_id") // Crea la FK en la tabla de poderes
+    @JoinColumn(name = "hero_id")
     private List<Power> powers;
 
     public Hero() {}
