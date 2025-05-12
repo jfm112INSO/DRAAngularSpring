@@ -11,6 +11,7 @@ public class Hero {
     private Long id;
 
     private String name;
+    private String image;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "hero_id")
@@ -31,6 +32,10 @@ public class Hero {
         return name;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     public List<Power> getPowers() {
         return powers;
     }
@@ -41,6 +46,10 @@ public class Hero {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setPowers(List<Power> powers) {

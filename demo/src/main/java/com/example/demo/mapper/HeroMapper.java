@@ -21,6 +21,7 @@ public class HeroMapper {
     public Hero toEntity(HeroDTO heroDTO) {
         Hero hero = new Hero();
         hero.setName(heroDTO.getName());
+        hero.setImage(heroDTO.getImage());
 
         List<Power> powers = heroDTO.getPowers().stream()
             .map(powerName -> powerRepository.findByName(powerName)
@@ -36,6 +37,6 @@ public class HeroMapper {
             .map(Power::getName)
             .collect(Collectors.toList());
 
-        return new HeroDTO(hero.getId(), hero.getName(), powers);
+        return new HeroDTO(hero.getId(), hero.getName(), powers, hero.getImage());
     }
 }

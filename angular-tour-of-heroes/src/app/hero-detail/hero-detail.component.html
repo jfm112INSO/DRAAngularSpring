@@ -1,25 +1,33 @@
 <button type="button" (click)="goBack()">go back</button>
 
-@if (hero) {
-  <h2>{{ hero.name | uppercase }} Details</h2>
-  <div>id: {{ hero.id }}</div>
-  <div>
-    <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
+<div *ngIf="hero" class="hero-detail">
+  <div class="hero-header">
+    <h2>{{ hero.name | uppercase }} Details</h2>
+    <img *ngIf="hero.image" [src]="hero.image" alt="{{ hero.name }}" class="medium-image" />
   </div>
 
-  <h3>Superpowers</h3>
-  <ul>
-    @for (power of hero.powers; track power) {
-      <li>
-        <input [(ngModel)]="hero.powers[hero.powers.indexOf(power)]" placeholder="Edit power">
-        <button type="button" (click)="removePower(hero.powers.indexOf(power))">Delete</button>
+  <div class="hero-info">
+    <div class="info-item">
+      <span class="label">ID:</span>
+      <span>{{ hero.id }}</span>
+    </div>
+
+    <div class="info-item">
+      <label for="hero-name">Hero name: </label>
+      <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
+    </div>
+
+    <h3>Superpowers</h3>
+    <ul class="powers-list">
+      <li *ngFor="let power of hero.powers; let i = index">
+        <input [(ngModel)]="hero.powers[i]" placeholder="Edit power">
+        <button type="button" (click)="removePower(i)">Delete</button>
       </li>
-    }    
-  </ul>
+    </ul>
 
-  <div>
-    <input [(ngModel)]="newPower" placeholder="Add new power">
-    <button type="button" (click)="addPower()">Add Power</button>
+    <div class="add-power">
+      <input [(ngModel)]="newPower" placeholder="Add new power">
+      <button type="button" (click)="addPower()">Add Power</button>
+    </div>
   </div>
-}
+</div>

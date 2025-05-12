@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { UpperCasePipe, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Hero } from '../hero';
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css'],
-  imports: [FormsModule, UpperCasePipe],
+  imports: [FormsModule, UpperCasePipe, CommonModule],
 })
 export class HeroDetailComponent {
   hero: Hero | undefined;
